@@ -5,6 +5,7 @@
         <link href="styles/mainStyle.css" type="text/css" rel="stylesheet" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	    <title>Лизинговый калькулятор</title> 
+        <script src="flipCounter/jquery.flipCounter.1.2.pack.js" type="text/javascript"></script>
         <script src="js/jquery.min.js"></script>   
         <script src="js/gauge.js"></script>             
     </head>
@@ -52,6 +53,7 @@
             <div class="smallSpeedometr" style="position: absolute; top: 250px; left: 675px;">
                 <h3 style="position:relative; top:30px; left:25px; text-align:left; width:50px;">ВАШ ЕЖЕМЕСЯЧНЫЙ ПЛАТЕЖ:</h3>
                 <input type="text" id="payment" style="background-color: #fa9829; position:relative; top: 20px; left: 15px;" disabled value="0" /> руб.
+                <div id="counter"><input type="hidden" name="counter-value" value="100" /></div>
             </div>
             <div class="footer">
                 График лизинговых платежей формируется индивидуально и рассчитан на потребности бизнеса каждого клиента. Мы с удовольствием предоставим вам индивидуальный расчет стоимости лизинга в самые короткие сроки, если вы направите нам заявку на лизинг или обратитесь напрямую к финансовому консультанту.
@@ -65,6 +67,25 @@
 </html>
 
 <script language="javascript" type="text/javascript">
+
+    jQuery(document).ready(function ($) {
+        $("#counter").flipCounter({
+            number: 0, // the initial number the counter should display, overrides the hidden field
+            numIntegralDigits: 1, // number of places left of the decimal point to maintain
+            numFractionalDigits: 0, // number of places right of the decimal point to maintain
+            digitClass: "counter-digit", // class of the counter digits
+            counterFieldName: "counter-value", // name of the hidden field
+            digitHeight: 40, // the height of each digit in the flipCounter-medium.png sprite image
+            digitWidth: 30, // the width of each digit in the flipCounter-medium.png sprite image
+            imagePath: "img/flipCounter-medium.png", // the path to the sprite image relative to your html document
+            easing: false, // the easing function to apply to animations, you can override this with a jQuery.easing method
+            duration: 10000, // duration of animations
+            onAnimationStarted: false, // call back for animation upon starting
+            onAnimationStopped: false, // call back for animation upon stopping
+            onAnimationPaused: false, // call back for animation upon pausing
+            onAnimationResumed: false // call back for animation upon resuming from pause
+        });
+    });
 
     function initBigGauge() {
         var opts = {
