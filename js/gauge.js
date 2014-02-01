@@ -350,10 +350,11 @@
       startY = Math.round(centerY + this.strokeWidth * Math.sin(angle - Math.PI / 2));
       endX = Math.round(centerX + this.strokeWidth * Math.cos(angle + Math.PI / 2));
       endY = Math.round(centerY + this.strokeWidth * Math.sin(angle + Math.PI / 2));
-      this.ctx.fillStyle = this.options.color;
+      this.ctx.fillStyle = '#000000';
       this.ctx.beginPath();
-      this.ctx.arc(centerX, centerY, this.strokeWidth, 0, Math.PI * 2, true);
+      this.ctx.arc(centerX, centerY, 15, 0, Math.PI * 2, false);
       this.ctx.fill();
+      this.ctx.fillStyle = this.options.color;
       this.ctx.beginPath();
       this.ctx.moveTo(startX, startY);
       this.ctx.lineTo(x, y);
