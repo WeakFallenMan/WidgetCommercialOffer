@@ -134,14 +134,19 @@
 
     function updateSmallGauge(setValue) {
 
-        smallGauge.set(setValue);
-        AnimationUpdater.run();
+        if (setValue >= 0 && setValue <= 50)
+        {
+            smallGauge.set(setValue);
+            AnimationUpdater.run();
+        }        
     }
 
     function updateBigGauge(setValue) {
-
-        bigGauge.set(setValue);
-        AnimationUpdater.run();
+        if (setValue >= 6 && setValue <= 42)
+        {
+            bigGauge.set(setValue);
+            AnimationUpdater.run();
+        }        
     }
 
     function calculate() {
