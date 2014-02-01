@@ -353,6 +353,10 @@
       this.ctx.fillStyle = '#000000';
       this.ctx.beginPath();
       this.ctx.arc(centerX, centerY, 15, 0, Math.PI * 2, false);
+      this.ctx.shadowColor = "#999";
+      this.ctx.shadowBlur = 20;
+      this.ctx.shadowOffsetX = 5;
+      this.ctx.shadowOffsetY = 5;
       this.ctx.fill();
       this.ctx.fillStyle = this.options.color;
       this.ctx.beginPath();
