@@ -340,7 +340,7 @@
     };
 
     GaugePointer.prototype.render = function() {
-      var angle, centerX, centerY, endX, endY, startX, startY, x, y;
+      var angle, centerX, centerY, endX, endY, startX, startY, x, y, innerRadius, outerRadius, gradient;
       angle = this.gauge.getAngle.call(this, this.displayedValue);
       centerX = this.canvas.width / 2;
       centerY = this.canvas.height * 0.9;
@@ -350,7 +350,12 @@
       startY = Math.round(centerY + this.strokeWidth * Math.sin(angle - Math.PI / 2));
       endX = Math.round(centerX + this.strokeWidth * Math.cos(angle + Math.PI / 2));
       endY = Math.round(centerY + this.strokeWidth * Math.sin(angle + Math.PI / 2));
-      this.ctx.fillStyle = '#000000';
+      innerRadius = 1;
+      outerRadius = 20;
+      gradient = this.ctx.createRadialGradient(startX, startY, innerRadius, startX, startY, outerRadius);
+      gradient.addColorStop(0, 'white');
+      gradient.addColorStop(1, 'black');
+      this.ctx.fillStyle = gradient;
       this.ctx.beginPath();
       this.ctx.arc(centerX, centerY, 15, 0, Math.PI * 2, false);
       this.ctx.shadowColor = "#999";
