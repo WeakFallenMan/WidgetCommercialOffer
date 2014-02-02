@@ -352,9 +352,15 @@
       endY = Math.round(centerY + this.strokeWidth * Math.sin(angle + Math.PI / 2));
       innerRadius = 1;
       outerRadius = 20;
-      gradient = this.ctx.createRadialGradient(startX, startY, innerRadius, startX, startY, outerRadius);
+      gradient = this.ctx.createRadialGradient(endX, endY, innerRadius, endX, endY, outerRadius);
       gradient.addColorStop(0, 'white');
       gradient.addColorStop(1, 'black');
+      this.ctx.fillStyle = this.options.color;
+      this.ctx.beginPath();
+      this.ctx.moveTo(startX, startY);
+      this.ctx.lineTo(x, y);
+      this.ctx.lineTo(endX, endY);
+      this.ctx.fill();
       this.ctx.fillStyle = gradient;
       this.ctx.beginPath();
       this.ctx.arc(centerX, centerY, 15, 0, Math.PI * 2, false);
@@ -362,12 +368,6 @@
       this.ctx.shadowBlur = 20;
       this.ctx.shadowOffsetX = 5;
       this.ctx.shadowOffsetY = 5;
-      this.ctx.fill();
-      this.ctx.fillStyle = this.options.color;
-      this.ctx.beginPath();
-      this.ctx.moveTo(startX, startY);
-      this.ctx.lineTo(x, y);
-      this.ctx.lineTo(endX, endY);
       return this.ctx.fill();
     };
 
