@@ -351,10 +351,10 @@
       endX = Math.round(centerX + this.strokeWidth * Math.cos(angle + Math.PI / 2));
       endY = Math.round(centerY + this.strokeWidth * Math.sin(angle + Math.PI / 2));
       innerRadius = 1;
-      outerRadius = 20;
-      gradient = this.ctx.createRadialGradient(endX, endY, innerRadius, endX, endY, outerRadius);
+      outerRadius = 15;
+      gradient = this.ctx.createRadialGradient(centerX, centerY - 5, innerRadius, centerX, centerY - 5, outerRadius);
       gradient.addColorStop(0, 'white');
-      gradient.addColorStop(1, 'black');
+      gradient.addColorStop(1, '#5e6063');
       this.ctx.fillStyle = this.options.color;
       this.ctx.beginPath();
       this.ctx.moveTo(startX, startY);
