@@ -69,6 +69,20 @@
 </html>
 
 <script type="text/javascript">
+    (function () {
+        var prev_value = "";
+        var input = document.getElementById("tbLeasingAmount");
+        input.onkeyup = input.onchange = input.onpaste = function () {
+            this.value = this.value.replace(/[^\d\s]/g, "");
+            if (prev_value == this.value)// отслеживаем изменение значения
+                return;
+            prev_value = this.value;
+            this.value = this.value.replace(/[^\d]/g, "").split("").reverse().join("").replace(/\d{3}(?!$|(?:\s$))/g, "$& ").split("").reverse().join(""); // Уууу, цепочки!..
+        };
+    })();
+</script>
+
+<script type="text/javascript">
 
     jQuery(document).ready(function ($) {
         $("#counter").flipCounter();
