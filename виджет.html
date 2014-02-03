@@ -98,6 +98,7 @@
         bigGauge.maxValue = 42; // set max gauge value
         bigGauge.animationSpeed = 32; // set animation speed (32 is default value)
         bigGauge.set(7); // set actual value
+        updateBigGauge(6);
     };
 
     function initSmallGauge() {
@@ -123,13 +124,12 @@
         smallGauge.maxValue = 50; // set max gauge value
         smallGauge.animationSpeed = 32; // set animation speed (32 is default value)
         smallGauge.set(1); // set actual value
+        updateSmallGauge(0);
     };
     $(function () {
 
         initSmallGauge();
         initBigGauge();
-        updateSmallGauge(0);
-        updateBigGauge(6);
     });
 
     function updateSmallGauge(setValue) {
