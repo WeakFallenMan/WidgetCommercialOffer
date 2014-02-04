@@ -173,8 +173,8 @@
     function calculate() {
         calcPercent();
 
-        leasingAmount = document.getElementById("tbLeasingAmount").value;
-        advance = document.getElementById("tbAdvance").value;
+        leasingAmount = document.getElementById("tbLeasingAmount").value.replace(/\s+/g, '');
+        advance = document.getElementById("tbAdvance").value.replace(/\s+/g, '');
         advancePercent = document.getElementById("tbPercent").value;
         irrPercent = document.getElementById("slctLeasingSubject").value;
         month = document.getElementById("tbMonth").value;
@@ -191,7 +191,7 @@
     }
 
     function calcPercent() {
-        percent = Math.ceil((document.getElementById("tbAdvance").value * 100) / document.getElementById("tbLeasingAmount").value);
+        percent = Math.ceil((document.getElementById("tbAdvance").value * 100) / document.getElementById("tbLeasingAmount").value.replace(/\s+/g, ''));
 
         if (percent <= 50)
             document.getElementById("tbPercent").value = percent;
@@ -207,7 +207,7 @@
         else
             document.getElementById("tbPercent").value = percent;
 
-        document.getElementById("tbAdvance").value = Math.ceil((percent / 100) * document.getElementById("tbLeasingAmount").value);
+        document.getElementById("tbAdvance").value = Math.ceil((percent / 100) * document.getElementById("tbLeasingAmount").value.replace(/\s+/g, ''));
     }
 
     function enterEmail() {
