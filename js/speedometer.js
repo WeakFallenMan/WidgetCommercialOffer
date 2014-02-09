@@ -145,7 +145,16 @@ function applyDefaultContextSettings(options) {
 	options.ctx.fillStyle = 'rgb(255,255,255)';
 }
 
-function drawSmallTickMarks(options) {
+function drawTicks(options) {
+    /* Two tick in the coloured arc!
+	 * Small ticks every 5
+	 * Large ticks every 10
+	 */
+    //drawSmallTickMarks(options);
+    drawLargeTickMarks(options, 20, 4);
+}
+
+function drawLargeTickMarks(options, bigInterval, smallInterval) {
 	/* The small tick marks against the coloured
 	 * arc drawn every 5 mph from 10 degrees to
 	 * 170 degrees.
@@ -168,7 +177,7 @@ function drawSmallTickMarks(options) {
 	applyDefaultContextSettings(options);
 
 	// Tick every 20 degrees (small ticks)
-	for (iTick = 10; iTick < 180; iTick += 20) {
+	for (iTick = 0; iTick <= 180; iTick += bigInterval) {
 
 		iTickRad = degToRad(iTick);
 
@@ -195,10 +204,14 @@ function drawSmallTickMarks(options) {
 		// Draw the line
 		drawLine(options, line);
 
+		if (iTick != 180)
+		{
+		    drawSmallTickMarks(options, iTick, iTick + bigInterval, smallInterval)
+		}
 	}
 }
 
-function drawLargeTickMarks(options) {
+function drawSmallTickMarks(options, startAngl, endAngl, interval) {
 	/* The large tick marks against the coloured
 	 * arc drawn every 10 mph from 10 degrees to
 	 * 170 degrees.
@@ -223,7 +236,7 @@ function drawLargeTickMarks(options) {
 	tickvalue = options.levelRadius - 2;
 
 	// 10 units (major ticks)
-	for (iTick = 20; iTick < 180; iTick += 20) {
+	for (iTick = startAngl + interval; iTick < endAngl; iTick += interval) {
 
 		iTickRad = degToRad(iTick);
 
@@ -250,15 +263,6 @@ function drawLargeTickMarks(options) {
 		// Draw the line
 		drawLine(options, line);
 	}
-}
-
-function drawTicks(options) {
-	/* Two tick in the coloured arc!
-	 * Small ticks every 5
-	 * Large ticks every 10
-	 */
-	drawSmallTickMarks(options);
-	drawLargeTickMarks(options);
 }
 
 function drawTextMarkers(options) {
@@ -473,25 +477,25 @@ function draw() {
 		options = buildOptionsAsJSON(canvas, iCurrentSpeed);
 
 	    // Clear canvas
-	    clearCanvas(options);
+	    //clearCanvas(options);
 
 		// Draw the metallic styled edge
-		drawMetallicArc(options);
+		//drawMetallicArc(options);
 
 		// Draw thw background
-		drawBackground(options);
+		//drawBackground(options);
 
 		// Draw tick marks
 		drawTicks(options);
 
 		// Draw labels on markers
-		drawTextMarkers(options);
+		//drawTextMarkers(options);
 
 		// Draw speeometer colour arc
-		drawSpeedometerColourArc(options);
+		//drawSpeedometerColourArc(options);
 
 		// Draw the needle and base
-		drawNeedle(options);
+		//drawNeedle(options);
 		
 	} else {
 		alert("Canvas not supported by your browser!");
