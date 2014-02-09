@@ -3,8 +3,31 @@ body
     text-align:center;
     font-family: Helvetica,Verdana,Arial;
     background: url('../img/background.jpg');
+    scrollbar-face-color: #000000;
+    scrollbar-shadow-color: #2D2C4D;
+    scrollbar-highlight-color:#7D7E94;
+    scrollbar-3dlight-color: #7D7E94;
+    scrollbar-darkshadow-color: #2D2C4D;
+    scrollbar-track-color: #7D7E94;
+    scrollbar-arrow-color: #C1C1D1;
 }
-            
+       
+::-webkit-scrollbar
+{
+  width: 12px;  /* for vertical scrollbars */
+  height: 12px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.5);
+}
+     
 h2
 {
     text-align: left;
