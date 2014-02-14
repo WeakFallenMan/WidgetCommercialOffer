@@ -3,6 +3,7 @@ body
     text-align:center;
     font-family: Helvetica,Verdana,Arial;
     background: url('../img/background.jpg');
+    background-repeat: no-repeat;
     scrollbar-face-color: #000000;
     scrollbar-shadow-color: #2D2C4D;
     scrollbar-highlight-color:#7D7E94;
@@ -112,31 +113,41 @@ input
     top: 525px;
     left: 50px;
 }
-.smallSpeedometr
+.smallSpeedometer
 {
-    background-color: #f3f3f5;
-    width: 225px;
+    background-position: center top;
+    background-image: url('../img/scale.JPG');
+    background-repeat: no-repeat;
+    background-color: #FFFFFF;
+    width: 230px;
     height: 225px;
     -webkit-border-radius: 117px;
     -moz-border-radius: 117px;
     border-radius: 117px;
-
-    -webkit-box-shadow: inset 0px 3px 4px 2px #828385,
-                        0px -5px 4px 4px #e3e3e5,
-                        0px 3px 4px 2px #d1dfe1,
-                        0px 4px 4px 5px #828385
+    -webkit-box-shadow: inset 0px 3px 4px 2px #828385, 0px -5px 4px 4px #e3e3e5, 0px 3px 4px 2px #d1dfe1, 0px 4px 4px 5px #828385;
 }
 
-.speedometr
+.emptySpeedometer
+{    
+    background-color: #FFFFFF;
+    width: 230px;
+    height: 225px;
+    -webkit-border-radius: 117px;
+    -moz-border-radius: 117px;
+    border-radius: 117px;
+    -webkit-box-shadow: inset 0px 3px 4px 2px #828385, 0px -5px 4px 4px #e3e3e5, 0px 3px 4px 2px #d1dfe1, 0px 4px 4px 5px #828385;
+}
+
+.speedometer
 {
-    background-color:#f3f3f5;
+    background-position: center top;
+    background-image: url('../img/bigScale.JPG');
+    background-repeat: no-repeat;
+    background-color: #ffffff;
     width: 300px;
     height: 300px;
     -webkit-border-radius: 155px;
     -moz-border-radius: 155px;
-    border-radius: 155px; 
-    -webkit-box-shadow: inset 0px 3px 4px 2px #828385,
-                        0px -5px 4px 4px #e3e3e5,
-                        0px 3px 4px 2px #d1dfe1,
-                        0px 4px 4px 5px #828385
+    border-radius: 155px;
+    -webkit-box-shadow: inset 0px 3px 4px 2px #828385, 0px -5px 4px 4px #e3e3e5, 0px 3px 4px 2px #d1dfe1, 0px 4px 4px 5px #828385;
 }
