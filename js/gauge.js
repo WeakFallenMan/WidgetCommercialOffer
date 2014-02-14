@@ -305,140 +305,16 @@
         }
     };
 
-    function degToRad(angle) {
-        // Degrees to radians
-        return ((angle * Math.PI) / 180);
-    }
-
-    function radToDeg(angle) {
-        // Radians to degree
-        return ((angle * 180) / Math.PI);
-    }
-
-    function drawLine(options, line) {
-        // Draw a line using the line object passed in
-        options.ctx.beginPath();
-
-        // Set attributes of open
-        options.ctx.globalAlpha = line.alpha;
-        options.ctx.lineWidth = line.lineWidth;
-        options.ctx.fillStyle = line.fillStyle;
-        options.ctx.strokeStyle = line.fillStyle;
-        options.ctx.moveTo(line.from.X,
-		line.from.Y);
-
-        // Plot the line
-        options.ctx.lineTo(
-		line.to.X,
-		line.to.Y
-	);
-
-        options.ctx.stroke();
-    }
-
-    function createLine(fromX, fromY, toX, toY, fillStyle, lineWidth, alpha) {
-        // Create a line object using Javascript object notation
-        return {
-            from: {
-                X: fromX,
-                Y: fromY
-            },
-            to: {
-                X: toX,
-                Y: toY
-            },
-            fillStyle: fillStyle,
-            lineWidth: lineWidth,
-            alpha: alpha
-        };
-    }
-
     GaugeScale = (function () {
 
-        function drawLargeTickMarks(options, bigInterval, smallInterval) {
-
-            var tickvalue = options.levelRadius - 8,
-              iTick = 0,
-              gaugeOptions = options.gaugeOptions,
-              iTickRad = 0,
-              onArchX,
-              onArchY,
-              innerTickX,
-              innerTickY,
-              fromX,
-              fromY,
-              line,
-              toX,
-              toY;
-
-            applyDefaultContextSettings(options);
-
-            for (iTick = 0; iTick <= 180; iTick += bigInterval) {
-
-                iTickRad = degToRad(iTick);
-
-                onArchX = gaugeOptions.radius - (Math.cos(iTickRad) * tickvalue);
-                onArchY = gaugeOptions.radius - (Math.sin(iTickRad) * tickvalue);
-                innerTickX = gaugeOptions.radius - (Math.cos(iTickRad) * gaugeOptions.radius);
-                innerTickY = gaugeOptions.radius - (Math.sin(iTickRad) * gaugeOptions.radius);
-
-                fromX = (options.center.X - gaugeOptions.radius) + onArchX;
-                fromY = (gaugeOptions.center.Y - gaugeOptions.radius) + onArchY;
-                toX = (options.center.X - gaugeOptions.radius) + innerTickX;
-                toY = (gaugeOptions.center.Y - gaugeOptions.radius) + innerTickY;
-
-                line = createLine(fromX, fromY, toX, toY, "rgb(127,127,127)", 3, 0.6);
-
-                drawLine(options, line);
-
-                if (iTick != 180) {
-                    drawSmallTickMarks(options, iTick, iTick + bigInterval, smallInterval)
-                }
-            }
+        function GaugeScale(gauge) {
+            this.gauge = gauge;
+            this.ctx = this.gauge.ctx;
+            this.canvas = this.gauge.canvas;
+            this.setOptions();
         }
 
-        function drawSmallTickMarks(options, startAngl, endAngl, interval) {
-
-            var tickvalue = options.levelRadius - 8,
-              iTick = 0,
-              gaugeOptions = options.gaugeOptions,
-              iTickRad = 0,
-              innerTickY,
-              innerTickX,
-              onArchX,
-              onArchY,
-              fromX,
-              fromY,
-              toX,
-              toY,
-              line;
-
-            applyDefaultContextSettings(options);
-
-            tickvalue = options.levelRadius - 2;
-
-            for (iTick = startAngl + interval; iTick < endAngl; iTick += interval) {
-
-                iTickRad = degToRad(iTick);
-
-                onArchX = gaugeOptions.radius - (Math.cos(iTickRad) * tickvalue);
-                onArchY = gaugeOptions.radius - (Math.sin(iTickRad) * tickvalue);
-                innerTickX = gaugeOptions.radius - (Math.cos(iTickRad) * gaugeOptions.radius);
-                innerTickY = gaugeOptions.radius - (Math.sin(iTickRad) * gaugeOptions.radius);
-
-                fromX = (options.center.X - gaugeOptions.radius) + onArchX;
-                fromY = (gaugeOptions.center.Y - gaugeOptions.radius) + onArchY;
-                toX = (options.center.X - gaugeOptions.radius) + innerTickX;
-                toY = (gaugeOptions.center.Y - gaugeOptions.radius) + innerTickY;
-
-                line = createLine(fromX, fromY, toX, toY, "rgb(127,127,127)", 3, 0.6);
-
-                drawLine(options, line);
-            }
-        }
-
-        return GaugeScale;
-    })();
+    });
 
     GaugePointer = (function (_super) {
         __extends(GaugePointer, _super);
@@ -486,10 +362,10 @@
             endX = Math.round(centerX + this.strokeWidth * Math.cos(angle + Math.PI / 2));
             endY = Math.round(centerY + this.strokeWidth * Math.sin(angle + Math.PI / 2));
             innerRadius = 1;
-            outerRadius = 15;
+            outerRadius = 12.5;
             gradient = this.ctx.createRadialGradient(centerX, centerY - 5, innerRadius, centerX, centerY - 5, outerRadius);
             gradient.addColorStop(0, 'white');
-            gradient.addColorStop(1, '#5e6063');            
+            gradient.addColorStop(1, '#5e6063');
             this.ctx.fillStyle = this.options.color;
             this.ctx.beginPath();
             this.ctx.moveTo(startX, startY);
@@ -498,11 +374,11 @@
             this.ctx.fill();
             this.ctx.fillStyle = gradient;
             this.ctx.beginPath();
-            this.ctx.arc(centerX, centerY, 15, 0, Math.PI * 2, false);
-            this.ctx.shadowColor = "#999";
-            this.ctx.shadowBlur = 20;
-            this.ctx.shadowOffsetX = 5;
-            this.ctx.shadowOffsetY = 5;
+            this.ctx.arc(centerX, centerY, outerRadius, 0, Math.PI * 2, false);
+//            this.ctx.shadowColor = "#999";
+//            this.ctx.shadowBlur = 20;
+//            this.ctx.shadowOffsetX = 5;
+//            this.ctx.shadowOffsetY = 5;
             return this.ctx.fill();
         };
 
@@ -600,7 +476,6 @@
                 options = null;
             }
             Gauge.__super__.setOptions.call(this, options);
-            this.configPercentColors();
             this.lineWidth = this.canvas.height * (1 - this.paddingBottom) * this.options.lineWidth;
             this.radius = this.canvas.height * (1 - this.paddingBottom) - this.lineWidth;
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -612,29 +487,6 @@
                 gauge.render();
             }
             return this;
-        };
-
-        Gauge.prototype.configPercentColors = function () {
-            var bval, gval, i, rval, _i, _ref1, _results;
-            this.percentColors = null;
-            if (this.options.percentColors !== void 0) {
-                this.percentColors = new Array();
-                _results = [];
-                for (i = _i = 0, _ref1 = this.options.percentColors.length - 1; 0 <= _ref1 ? _i <= _ref1 : _i >= _ref1; i = 0 <= _ref1 ? ++_i : --_i) {
-                    rval = parseInt((cutHex(this.options.percentColors[i][1])).substring(0, 2), 16);
-                    gval = parseInt((cutHex(this.options.percentColors[i][1])).substring(2, 4), 16);
-                    bval = parseInt((cutHex(this.options.percentColors[i][1])).substring(4, 6), 16);
-                    _results.push(this.percentColors[i] = {
-                        pct: this.options.percentColors[i][0],
-                        color: {
-                            r: rval,
-                            g: gval,
-                            b: bval
-                        }
-                    });
-                }
-                return _results;
-            }
         };
 
         Gauge.prototype.set = function (value) {
@@ -675,39 +527,6 @@
             return (1 + this.options.angle) * Math.PI + ((value - this.minValue) / (this.maxValue - this.minValue)) * (1 - this.options.angle * 2) * Math.PI;
         };
 
-        Gauge.prototype.getColorForPercentage = function (pct, grad) {
-            var color, endColor, i, rangePct, startColor, _i, _ref1;
-            if (pct === 0) {
-                color = this.percentColors[0].color;
-            } else {
-                color = this.percentColors[this.percentColors.length - 1].color;
-                for (i = _i = 0, _ref1 = this.percentColors.length - 1; 0 <= _ref1 ? _i <= _ref1 : _i >= _ref1; i = 0 <= _ref1 ? ++_i : --_i) {
-                    if (pct <= this.percentColors[i].pct) {
-                        if (grad === true) {
-                            startColor = this.percentColors[i - 1];
-                            endColor = this.percentColors[i];
-                            rangePct = (pct - startColor.pct) / (endColor.pct - startColor.pct);
-                            color = {
-                                r: Math.floor(startColor.color.r * (1 - rangePct) + endColor.color.r * rangePct),
-                                g: Math.floor(startColor.color.g * (1 - rangePct) + endColor.color.g * rangePct),
-                                b: Math.floor(startColor.color.b * (1 - rangePct) + endColor.color.b * rangePct)
-                            };
-                        } else {
-                            color = this.percentColors[i].color;
-                        }
-                        break;
-                    }
-                }
-            }
-            return 'rgb(' + [color.r, color.g, color.b].join(',') + ')';
-        };
-
-        Gauge.prototype.getColorForValue = function (val, grad) {
-            var pct;
-            pct = (val - this.minValue) / (this.maxValue - this.minValue);
-            return this.getColorForPercentage(pct, grad);
-        };
-
         Gauge.prototype.render = function () {
             var displayedAngle, fillStyle, gauge, h, w, _i, _len, _ref1, _results;
             w = this.canvas.width / 2;
@@ -716,31 +535,31 @@
             if (this.textField) {
                 this.textField.render(this);
             }
-//            this.ctx.lineCap = "butt";
-//            if (this.options.customFillStyle !== void 0) {
-//                fillStyle = this.options.customFillStyle(this);
-//            } else if (this.percentColors !== null) {
-//                fillStyle = this.getColorForValue(this.displayedValue, true);
-//            } else if (this.options.colorStop !== void 0) {
-//                if (this.options.gradientType === 0) {
-//                    fillStyle = this.ctx.createRadialGradient(w, h, 9, w, h, 70);
-//                } else {
-//                    fillStyle = this.ctx.createLinearGradient(0, 0, w, 0);
-//                }
-//                fillStyle.addColorStop(0, this.options.colorStart);
-//                fillStyle.addColorStop(1, this.options.colorStop);
-//            } else {
-//                fillStyle = this.options.colorStart;
-//            }
-//            this.ctx.strokeStyle = fillStyle;
-//            this.ctx.beginPath();
-//            this.ctx.arc(w, h, this.radius, (1 + this.options.angle) * Math.PI, displayedAngle, false);
-//            this.ctx.lineWidth = this.lineWidth;
-//            this.ctx.stroke();
-//            this.ctx.strokeStyle = this.options.strokeColor;
-//            this.ctx.beginPath();
-//            this.ctx.arc(w, h, this.radius, displayedAngle, (2 - this.options.angle) * Math.PI, false);
-//            this.ctx.stroke();
+            //            this.ctx.lineCap = "butt";
+            //            if (this.options.customFillStyle !== void 0) {
+            //                fillStyle = this.options.customFillStyle(this);
+            //            } else if (this.percentColors !== null) {
+            //                fillStyle = this.getColorForValue(this.displayedValue, true);
+            //            } else if (this.options.colorStop !== void 0) {
+            //                if (this.options.gradientType === 0) {
+            //                    fillStyle = this.ctx.createRadialGradient(w, h, 9, w, h, 70);
+            //                } else {
+            //                    fillStyle = this.ctx.createLinearGradient(0, 0, w, 0);
+            //                }
+            //                fillStyle.addColorStop(0, this.options.colorStart);
+            //                fillStyle.addColorStop(1, this.options.colorStop);
+            //            } else {
+            //                fillStyle = this.options.colorStart;
+            //            }
+            //            this.ctx.strokeStyle = fillStyle;
+            //            this.ctx.beginPath();
+            //            this.ctx.arc(w, h, this.radius, (1 + this.options.angle) * Math.PI, displayedAngle, false);
+            //            this.ctx.lineWidth = this.lineWidth;
+            //            this.ctx.stroke();
+            //            this.ctx.strokeStyle = this.options.strokeColor;
+            //            this.ctx.beginPath();
+            //            this.ctx.arc(w, h, this.radius, displayedAngle, (2 - this.options.angle) * Math.PI, false);
+            //            this.ctx.stroke();
             _ref1 = this.gp;
             _results = [];
             for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
