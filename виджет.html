@@ -5,69 +5,73 @@
         <link href="styles/mainStyle.css" type="text/css" rel="stylesheet" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	    <title>Лизинговый калькулятор</title> 
+        <link rel="stylesheet" href="styles/smoothness/jquery-ui-1.10.4.custom.min.css">
         <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
         <script src="js/jshashtable.js" type="text/javascript"></script>
         <script src="js/jquery.numberformatter-1.2.2.min.js" type="text/javascript"></script>
         <script src="js/jquery.flipCounter.1.2.js" type="text/javascript"></script>
-        <script src="js/gauge.js" type="text/javascript"></script>          
+        <script src="js/gauge.js" type="text/javascript"></script>    
+        <script src="js/widget.js" type="text/javascript"></script>       
     </head>
     <body>
-        <div style="width:1024px">
-        <header>
-            <img id="logo" src="img/logo.gif">
-            <h2>Лизинговый калькулятор</h2>
-        </header>
-        <form action="">
-            <div style="position:absolute; top:75px; left:125px;">
-                <h3>ПРЕДМЕТ ЛИЗИНГА:</h3>    
-                <select multiple onchange="calculate()" id="slctLeasingSubject" style="width:225px;">
-                    <option value="22" selected>Автомобили марки ГАЗ</option>
-                    <option value="25">Грузовики и спецтехника</option>
-                    <option value="25">Легковые автомобили</option>
-                </select>        
-            </div>
-            <div style="position:absolute; top:75px; left:600px;">
-                <h3 style="text-align:left">
-                    СТОИМОСТЬ:
+        <div id="widget">
+            <header>
+                <img id="logo" src="img/logo.gif">
+                <h1>Лизинговый калькулятор</h1>
+            </header>
+            <form action="">
+                <div style="position:absolute; top:100px; left:75px;">
+                    <h3>ПРЕДМЕТ ЛИЗИНГА:   
                     <br />
-                    <input type="text" id="tbLeasingAmount" class="textbox" onchange="calculate()" value="0" />
-                    руб.
-                </h3>
-            </div>
-            <div class="smallSpeedometer" style="position: absolute; top: 250px; left: 100px;">   
-                <canvas width=225 height=125 id="advanceGauge"></canvas>
-                <h3>
-                    АВАНС:
-                    <input type="text" id="tbPercent" name="percent" style="width: 15px" onchange="calcAdvance(); calculate();" class="smallTextbox" value="0" />
-                    %
-                    <br />
-                    <input type="text" id="tbAdvance" onchange="calculate()" class="smallTextbox" value="0" />
-                    руб.
-                </h3>
-            </div>   
-            <div class="speedometer" style="position: absolute; top: 200px; left: 350px;">        
-                <canvas width=300 height=165 id="monthGauge"></canvas>
-                <h3>
-                    СРОК ЛИЗИНГА:
-                    <input type="text" id="tbMonth" style="width: 15px" onchange="calculate()" class="smallTextbox" value="6" />
-                    мес.
-                </h3>
-            </div> 
-            <div class="emptySpeedometer" style="position: absolute; top: 250px; left: 675px;">
-                <h3 style="position:relative; top:30px; left:25px; text-align:left; width:50px;">
-                    ВАШ ЕЖЕМЕСЯЧНЫЙ ПЛАТЕЖ:
-                </h3>
-                    <div id="counter" style="position:relative; top: 20px;"><input id="payment" type="hidden" name="counter-value" value="000000" /></div> 
-                <h3 style=" margin-right:30px; text-align:right">руб.</h3>    
-            </div>
-            <div class="footer">
-                График лизинговых платежей формируется индивидуально и рассчитан на потребности бизнеса каждого клиента. Мы с удовольствием предоставим вам индивидуальный расчет стоимости лизинга в самые короткие сроки, если вы направите нам заявку на лизинг или обратитесь напрямую к финансовому консультанту.
-            </div>
-            <div style="position:absolute; top:525px; left:700px;">
-                <input type="button" class="button" value="Получить одобрение" onclick="enterEmail()" />
-            </div>
-        </form>
-            </div>
+                    <select onchange="calculate()" id="slctLeasingSubject">
+                        <option value="22" selected>Автомобили марки ГАЗ</option>
+                        <option value="25">Грузовики и спецтехника</option>
+                        <option value="25">Легковые автомобили</option>
+                    </select>   
+                    </h3>      
+                </div>
+                <div style="position:absolute; top:100px; left:550px;">
+                    <h3 style="text-align:left">
+                        СТОИМОСТЬ:
+                        <br />
+                        <input type="text" id="tbLeasingAmount" class="textbox" onchange="calculate()" value="0" />
+                        руб.
+                    </h3>
+                </div>
+                <div class="smallSpeedometer" style="position: absolute; top: 250px; left: 50px;">   
+                    <canvas width=225 height=125 id="advanceGauge"></canvas>
+                    <h3>
+                        АВАНС:
+                        <input type="text" id="tbPercent" name="percent" style="width: 15px" onchange="calcAdvance(); calculate();" class="smallTextbox" value="0" />
+                        %
+                        <input type="text" id="tbAdvance" onchange="calculate()" class="smallTextbox" value="0" />
+                        руб.
+                    </h3>
+                </div>   
+                <div class="speedometer" style="position: absolute; top: 200px; left: 300px;">        
+                    <canvas width=300 height=165 id="monthGauge"></canvas>
+                    <h3>СРОК ЛИЗИНГА:</h3>
+                    <h3>
+                        <input type="text" id="tbMonth" style="width: 15px" onchange="calculate()" class="smallTextbox" value="6" />
+                        мес.
+                    </h3>
+                </div> 
+                <div class="emptySpeedometer" style="position: absolute; top: 250px; left: 620px;">
+                    <h3 style="position:relative; top:30px; left:25px; text-align:left; width:50px;">
+                        ВАШ ЕЖЕМЕСЯЧНЫЙ ПЛАТЕЖ:
+                    </h3>
+                        <div id="counter" style="position:relative; top: 20px;"><input id="payment" type="hidden" name="counter-value" value="000000" /></div> 
+                    <h3 style=" margin-right:40px; text-align:right">руб.</h3>    
+                </div>
+                <div class="footer">
+                    График лизинговых платежей формируется индивидуально и рассчитан на потребности бизнеса каждого клиента. Мы с удовольствием предоставим вам индивидуальный расчет стоимости лизинга в самые короткие сроки, если вы направите нам заявку на лизинг или обратитесь напрямую к финансовому консультанту.
+                </div>
+                <div style="position:absolute; top:525px; left:650px;">
+                    <input type="button" class="button" value="Получить одобрение" onclick="enterEmail()" />
+                </div>
+            </form>
+        </div>
     </body>
 
 </html>
@@ -77,6 +81,7 @@
         var prev_value = "";
         var input = document.getElementById("tbAdvance");
         input.onkeyup = input.onchange = input.onpaste = function () {
+            calculate();
             this.value = this.value.replace(/[^\d\s]/g, "");
             if (prev_value == this.value)// отслеживаем изменение значения
                 return;
@@ -89,6 +94,7 @@
         var prev_value = "";
         var input = document.getElementById("tbLeasingAmount");
         input.onkeyup = input.onchange = input.onpaste = function () {
+            calculate();
             this.value = this.value.replace(/[^\d\s]/g, "");
             if (prev_value == this.value)// отслеживаем изменение значения
                 return;
@@ -96,146 +102,4 @@
             this.value = this.value.replace(/[^\d]/g, "").split("").reverse().join("").replace(/\d{3}(?!$|(?:\s$))/g, "$& ").split("").reverse().join(""); // Уууу, цепочки!..
         };
     })();
-</script>
-
-<script type="text/javascript">
-    
-    $("input[type=text]").keypress(function (b) {
-        var C = /[0-9\x25\x27\x24\x23]/;
-        var a = b.which;
-        var c = String.fromCharCode(a);
-        return !!(a == 0 || a == 8 || a == 9 || a == 13 || c.match(C));
-    });
-
-    jQuery(document).ready(function ($) {
-        $("#counter").flipCounter(
-            {formatNumberOptions: { format: "00,000", locale: "fr"} }
-        );
-    });
-    
-    function initBigGauge() {
-        var opts = {
-            lines: 15, // The number of lines to draw
-            angle: 0.0, // The length of each line
-            lineWidth: 0.03, // The line thickness
-            pointer: {
-                length: 0.65, // The radius of the inner circle
-                strokeWidth: 0.04, // The rotation offset
-                color: '#f25a2c' // Fill color
-            },
-            limitMax: 'true',   // If true, the pointer will not go past the end of the gauge
-
-            colorStart: '#6FADCF',   // Colors
-            colorStop: '#8FC0DA',    // just experiment with them
-            strokeColor: '#E0E0E0',   // to see which ones work best for you
-            generateGradient: false
-        };
-
-        var target = document.getElementById('monthGauge'); // your canvas element
-        bigGauge = new Gauge(target).setOptions(opts); // create sexy gauge!
-        bigGauge.setMinValue(6);
-        bigGauge.maxValue = 42; // set max gauge value
-        bigGauge.animationSpeed = 32; // set animation speed (32 is default value)
-        bigGauge.set(7); // set actual value
-        updateBigGauge(6);
-    };
-
-    function initSmallGauge() {
-        var opts = {
-            lines: 12, // The number of lines to draw
-            angle: 0.0, // The length of each line
-            lineWidth: 0.03, // The line thickness
-            pointer: {
-                length: 0.75, // The radius of the inner circle
-                strokeWidth: 0.04, // The rotation offset
-                color: '#f25a2c' // Fill color
-            },
-            limitMax: 'true',   // If true, the pointer will not go past the end of the gauge
-
-            colorStart: '#6FADCF',   // Colors
-            colorStop: '#8FC0DA',    // just experiment with them
-            strokeColor: '#E0E0E0',   // to see which ones work best for you
-            generateGradient: true
-        };
-
-        var target = document.getElementById('advanceGauge'); // your canvas element
-        smallGauge = new Gauge(target).setOptions(opts); // create sexy gauge!
-        smallGauge.maxValue = 50; // set max gauge value
-        smallGauge.animationSpeed = 32; // set animation speed (32 is default value)
-        smallGauge.set(1); // set actual value
-        updateSmallGauge(0);
-    };
-    $(function () {
-
-        initSmallGauge();
-        initBigGauge();
-    });
-
-    function updateSmallGauge(setValue) {
-
-        if (setValue >= 0 && setValue <= 50)
-        {
-            smallGauge.set(setValue);
-            AnimationUpdater.run();
-        }        
-    }
-
-    function updateBigGauge(setValue) {
-        if (setValue >= 6 && setValue <= 42)
-        {
-            bigGauge.set(setValue);
-            AnimationUpdater.run();
-        }        
-    }
-
-    function calculate() {
-        
-        calcPercent();
-
-        leasingAmount = document.getElementById("tbLeasingAmount").value.replace(/\s+/g, '');
-        advance = document.getElementById("tbAdvance").value.replace(/\s+/g, '');
-        advancePercent = document.getElementById("tbPercent").value;
-        irrPercent = document.getElementById("slctLeasingSubject").value;
-        month = document.getElementById("tbMonth").value;
-
-        updateSmallGauge(parseInt(advancePercent));
-        updateBigGauge(parseInt(month));
-
-
-        c = leasingAmount - ((leasingAmount / 100) * advancePercent);
-        b = (irrPercent / 100) / 12;
-
-        paymentTotal = Math.ceil((c * b) / (1 - (1 / Math.pow((1 + b), month))));
-        $("#counter").flipCounter("setNumber", paymentTotal);
-    }
-
-    function calcPercent() {
-        percent = Math.ceil((document.getElementById("tbAdvance").value * 100) / document.getElementById("tbLeasingAmount").value.replace(/\s+/g, ''));
-
-        if (percent <= 50)
-            document.getElementById("tbPercent").value = percent;
-        else {
-            alert("Размер аванса не должен превышать 50% от стоимости предмета лизинга!");
-        }
-    }
-
-    function calcAdvance(percent) {
-        
-        if (percent == null)
-            percent = document.getElementById("tbPercent").value;
-        else
-            document.getElementById("tbPercent").value = percent;
-
-        document.getElementById("tbAdvance").value = Math.ceil((percent / 100) * document.getElementById("tbLeasingAmount").value.replace(/\s+/g, ''));
-    }
-
-    function enterEmail() {
-        var x;
-        var email = prompt("Введите свой email:");
-
-        if (email != null) {
-            alert("Вы ввели: " + email);
-        }
-    }
-
 </script>
