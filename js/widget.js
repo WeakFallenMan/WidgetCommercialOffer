@@ -71,13 +71,13 @@
 
     $(function () {
 
-//        $("#widget").dialog({
-//            height: 650,
-//            width: 900,
-//            modal: true,
-//            resizable: false,
-//            draggable: false
-//        });
+        $("#widget").dialog({
+            height: 650,
+            width: 900,
+            modal: true,
+            resizable: false,
+            draggable: false
+        });
 
         initSmallGauge();
         initBigGauge();
