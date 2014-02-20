@@ -1,7 +1,7 @@
-body
+#widget
 {
+    font-family:Verdana;
     text-align:center;
-    font-family: Helvetica,Verdana,Arial;
     background: url('../img/background.jpg');
     background-repeat: no-repeat;
     scrollbar-face-color: #000000;
@@ -29,10 +29,10 @@ body
   background: rgba(0, 0, 0, 0.5);
 }
      
-h2
+h1
 {
     text-align: left;
-    color: #FF6600;
+    color: #FF9933;
     margin-left: 50px;
 }
             
@@ -44,11 +44,14 @@ img
             
 #slctLeasingSubject
 {
+    width:250px;
+    height:50px;
     padding: 5px;
+    margin:10px;
     color: #FFFFFF;
     background-color: #a0bf1f;
     border-radius: 10px;
-    box-shadow: 0 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -5px hsl(0, 0%, 2%);
+    box-shadow: 0px 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -5px hsl(0, 0%, 2%), inset 0px -1px 6px -2px hsl(0, 0%, 2%);
     font-size: 15px;
 }
             
@@ -72,25 +75,24 @@ input
     font-size: 18px;   
 }   
        
-.textbox 
-{ 
-    border: 1px solid #848484;
-    border-radius: 10px; 
+.textbox
+{
+    margin: 10px 5px 10px 0px;
+    border-radius: 10px;
     background-color: #a0bf1f;
     color: #FFFFFF;
-    outline:0; 
-    height:50px; 
-    width: 150px; 
-    padding-left:10px; 
-    padding-right:10px; 
+    outline: 0;
+    height: 50px;
+    width: 150px;
+    padding-left: 10px;
+    padding-right: 10px;
     font-weight: bold;
     font-size: 25px;
-    box-shadow: 0 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -5px hsl(0, 0%, 2%);
+    box-shadow: 0px 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -4px hsl(0, 0%, 2%), inset 0px -1px 6px -2px hsl(0, 0%, 2%);
 } 
             
 .smallTextbox 
 { 
-    border: 1px solid #848484;
     border-radius: 4px; 
     background-color: #a0bf1f;
     color: #FFFFFF;
@@ -100,14 +102,14 @@ input
     padding-left:10px; 
     padding-right:10px; 
     font-weight: bold;
-    box-shadow: 0 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -5px hsl(0, 0%, 2%);
+    box-shadow: 0px 0px 6px -3px hsl(0, 0%, 40%), inset 0px 4px 6px -5px hsl(0, 0%, 2%), inset 0px -1px 6px -3px hsl(0, 0%, 2%);
 } 
             
 .footer
 {
-    max-width: 650px;
+    max-width: 580px;
     margin: 0 auto;
-    text-align:left;
+    text-align:justify;
     font-size: 12px;
     position: absolute;
     top: 525px;
@@ -125,6 +127,7 @@ input
     -moz-border-radius: 117px;
     border-radius: 117px;
     -webkit-box-shadow: inset 0px 3px 4px 2px #828385, 0px -5px 4px 4px #e3e3e5, 0px 3px 4px 2px #d1dfe1, 0px 4px 4px 5px #828385;
+    box-shadow: inset 0px 3px 4px 2px #828385, 0px -5px 4px 4px #e3e3e5, 0px 3px 4px 2px #d1dfe1, 0px 4px 4px 5px #828385;
 }
 
 .emptySpeedometer
@@ -136,6 +139,7 @@ input
     -moz-border-radius: 117px;
     border-radius: 117px;
     -webkit-box-shadow: inset 0px 3px 4px 2px #828385, 0px -5px 4px 4px #e3e3e5, 0px 3px 4px 2px #d1dfe1, 0px 4px 4px 5px #828385;
+    box-shadow: inset 0px 3px 4px 2px #828385, 0px -5px 4px 4px #e3e3e5, 0px 3px 4px 2px #d1dfe1, 0px 4px 4px 5px #828385;
 }
 
 .speedometer
@@ -150,4 +154,5 @@ input
     -moz-border-radius: 155px;
     border-radius: 155px;
     -webkit-box-shadow: inset 0px 3px 4px 2px #828385, 0px -5px 4px 4px #e3e3e5, 0px 3px 4px 2px #d1dfe1, 0px 4px 4px 5px #828385;
+    box-shadow: inset 0px 3px 4px 2px #828385, 0px -5px 4px 4px #e3e3e5, 0px 3px 4px 2px #d1dfe1, 0px 4px 4px 5px #828385;
 }
