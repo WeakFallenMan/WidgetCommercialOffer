@@ -102,7 +102,7 @@ input
     padding-left:10px; 
     padding-right:10px; 
     font-weight: bold;
-    box-shadow: 0px 0px 6px -3px hsl(0, 0%, 40%), inset 0px 4px 6px -5px hsl(0, 0%, 2%), inset 0px -1px 6px -3px hsl(0, 0%, 2%);
+    box-shadow: inset 0px -4px 6px -6px hsl(0, 0%, 2%), inset 0px 4px 6px -5px hsl(0, 0%, 2%), inset 0px -1px 6px -3px hsl(0, 0%, 2%);
 } 
             
 .footer
