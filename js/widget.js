@@ -101,7 +101,7 @@
     }
 
     function calculate() {
-        
+
         calcPercent();
 
         leasingAmount = document.getElementById("tbLeasingAmount").value.replace(/\s+/g, '');
@@ -113,21 +113,28 @@
         updateSmallGauge(parseInt(advancePercent));
         updateBigGauge(parseInt(month));
 
+        if ((advancePercent >= 0) && (advancePercent <= 50) && (month >= 6) && (month <= 42)) {
+            c = leasingAmount - ((leasingAmount / 100) * advancePercent);
+            b = (irrPercent / 100) / 12;
 
-        c = leasingAmount - ((leasingAmount / 100) * advancePercent);
-        b = (irrPercent / 100) / 12;
-
-        paymentTotal = Math.ceil((c * b) / (1 - (1 / Math.pow((1 + b), month))));
-        $("#counter").flipCounter("setNumber", paymentTotal);
+            paymentTotal = Math.ceil((c * b) / (1 - (1 / Math.pow((1 + b), month))));
+            $("#counter").flipCounter("setNumber", paymentTotal);
+        }
     }
 
     function calcPercent() {
-        percent = Math.ceil((document.getElementById("tbAdvance").value.replace(/\s+/g, '') * 100) / document.getElementById("tbLeasingAmount").value.replace(/\s+/g, ''));
+        var percent;
+        advance = document.getElementById("tbAdvance").value.replace(/\s+/g, '');
+        leasingAmount = document.getElementById("tbLeasingAmount").value.replace(/\s+/g, '');
 
-        if (percent <= 50)
+        if (advance <= 0)
+            percent = document.getElementById("tbPercent").value;
+        else
+            percent = Math.ceil(((advance) * 100) / leasingAmount);
+
+        if (percent <= 50) {
             document.getElementById("tbPercent").value = percent;
-        else {
-            alert("Размер аванса не должен превышать 50% от стоимости предмета лизинга!");
+            calcAdvance(percent);
         }
     }
 
