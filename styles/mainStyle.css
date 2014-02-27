@@ -107,13 +107,13 @@ input
             
 .footer
 {
-    max-width: 580px;
     margin: 0 auto;
     text-align: justify;
     font-size: 12px;
     position: absolute;
     top: 525px;
     left: 50px;
+    right:50px;
     color: #666666;
 }
 .smallSpeedometer
