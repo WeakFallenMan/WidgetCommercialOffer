@@ -15,7 +15,25 @@
             }
         );
     });
-    
+
+    function decreaseMonth() {
+        month = document.getElementById("tbMonth").value;
+
+        if (month > 6)
+            month = month--;
+
+        document.getElementById("tbMonth").value = month;
+    }
+
+    function increaseMonth() {
+        month = document.getElementById("tbMonth").value;
+
+        if (month < 42)
+            month = month++;
+
+        document.getElementById("tbMonth").value = month;
+    }
+
     function initBigGauge() {
         var opts = {
             lines: 15, // The number of lines to draw
