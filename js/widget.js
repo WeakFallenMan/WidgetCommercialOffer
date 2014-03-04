@@ -16,22 +16,52 @@
         );
     });
 
-    function decreaseMonth() {
-        month = document.getElementById("tbMonth").value;
+    function holdit(btn, start, speedup) {
+        var t;
 
-        if (month > 6)
-            month = month--;
+        var repeat = function () {
+            increaseMonth()
+            t = setTimeout(repeat, start);
+            start = start / speedup;
+        }
 
-        document.getElementById("tbMonth").value = month;
-    }
+        document.getElementById(btn).mousedown = function () {
+            repeat();
+        }
+
+        document.getElementById(btn).mouseup = function () {
+            clearTimeout(t);
+        }
+    };
 
     function increaseMonth() {
         month = document.getElementById("tbMonth").value;
 
         if (month < 42)
-            month = month++;
+            month = parseInt(month) + 1;
 
         document.getElementById("tbMonth").value = month;
+        calculate();
+    }
+
+    function decreaseMonth() {
+        month = document.getElementById("tbMonth").value;
+
+        if (month > 6)
+            month = month - 1;
+
+        document.getElementById("tbMonth").value = month;
+        calculate();
+    }
+
+    function changeImage(imageName, imageSrc) {
+        document.images[imageName].src = imageSrc;
+        return true;
+    }
+
+    function changeImageBack(imageName, imageSrc) {
+        document.images[imageName].src = imageSrc;
+        return true;
     }
 
     function initBigGauge() {

@@ -119,7 +119,7 @@ input
 .smallSpeedometer
 {
     background-position: center top;
-    background-image: url('../img/scale.JPG');
+    background-image: url('../img/smallScale.png');
     background-repeat: no-repeat;
     background-color: #FFFFFF;
     width: 230px;
@@ -146,7 +146,7 @@ input
 .speedometer
 {
     background-position: center top;
-    background-image: url('../img/bigScale.JPG');
+    background-image: url('../img/bigScale.png');
     background-repeat: no-repeat;
     background-color: #ffffff;
     width: 300px;
