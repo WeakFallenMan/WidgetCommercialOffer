@@ -56,11 +56,11 @@
                         <input type="text" id="tbMonth" style="width: 15px" onchange="calculate()" class="smallTextbox" value="6" />
                         мес.
                     </h3>
-                    <a style="position: absolute; bottom: 15px; left: 35%;" href="#" onMouseOver="return changeImage('leftButton', 'img/left_arrow.png')" onMouseOut= "return changeImageBack('leftButton', 'img/left_arrow_dark.png')">
-                        <img name="leftButton" src="img/left_arrow_dark.png" id="ibtnLeft" alt="Уменьшить срок на месяц" onclick="holdit(document.getElementById('ibtnLeft'), decreaseMonth(), 1000, 2);" />
+                    <a style="position: absolute; bottom: 15px; left: 35%;" href="#">
+                        <img name="leftButton" src="img/left_arrow_dark.png" id="ibtnLeft" onMouseOver="return changeImage('leftButton', 'img/left_arrow.png')" onMouseOut= "return changeImageBack('leftButton', 'img/left_arrow_dark.png')" alt="Уменьшить срок на месяц" onclick="holdit(document.getElementById('ibtnLeft'), decreaseMonth(), 1000, 2);" />
                     </a>
-                    <a style="position: absolute; bottom: 15px; left: 55%;" href="#" onMouseOver="return changeImage('rightButton', 'img/right_arrow.png')" onMouseOut= "return changeImageBack('rightButton', 'img/right_arrow_dark.png')">
-                        <img name="rightButton" src="img/right_arrow_dark.png" id="ibtnRight" alt="Уменьшить срок на месяц" onclick="holdit(document.getElementById('ibtnRight'), increaseMonth(), 1000, 2);" />
+                    <a style="position: absolute; bottom: 15px; left: 55%;" href="#">
+                        <img name="rightButton" src="img/right_arrow_dark.png" id="ibtnRight" onMouseOver="return changeImage('rightButton', 'img/right_arrow.png')" onMouseOut= "return changeImageBack('rightButton', 'img/right_arrow_dark.png')" alt="Уменьшить срок на месяц" onclick="holdit(document.getElementById('ibtnRight'), increaseMonth(), 1000, 2);" />
                     </a>
                 </div> 
                 <div class="emptySpeedometer" style="position: absolute; top: 250px; left: 620px;">
