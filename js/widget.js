@@ -16,6 +16,14 @@
         );
     });
 
+        function checkNumber() {
+            amount = document.getElementById("tbLeasingAmount").value.replace(/\s+/g, '');
+            if (amount > 56000000)
+                document.getElementById("tbLeasingAmount").value = "56 000 000";
+            if (amount < 0)
+                document.getElementById("tbLeasingAmount").value = 0
+    }
+
     function holdit(btn, start, speedup) {
         var t;
 
@@ -150,6 +158,7 @@
 
     function calculate() {
 
+        checkNumber(); 
         calcPercent();
 
         leasingAmount = document.getElementById("tbLeasingAmount").value.replace(/\s+/g, '');
