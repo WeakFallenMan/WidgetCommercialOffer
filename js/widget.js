@@ -9,8 +9,8 @@
     jQuery(document).ready(function ($) {
         $("#counter").flipCounter(
             {
-                digitHeight: 35,
-                digitWidth: 26.3,
+                digitHeight: 25,
+                digitWidth: 18.7,
                 formatNumberOptions: { format: "000,000" } 
             }
         );
@@ -18,8 +18,8 @@
 
         function checkNumber() {
             amount = document.getElementById("tbLeasingAmount").value.replace(/\s+/g, '');
-            if (amount > 56000000)
-                document.getElementById("tbLeasingAmount").value = "56 000 000";
+            if (amount > 55000000)
+                document.getElementById("tbLeasingAmount").value = "55 000 000";
             if (amount < 0)
                 document.getElementById("tbLeasingAmount").value = 0
     }

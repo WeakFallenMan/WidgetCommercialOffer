@@ -28,6 +28,11 @@
 {
   background: rgba(0, 0, 0, 0.5);
 }
+    
+.counter-digit 
+{
+    margin: 0px 2px;
+}
      
 h1
 {
@@ -53,6 +58,9 @@ img
     border-radius: 10px;
     box-shadow: 0px 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -5px hsl(0, 0%, 2%), inset 0px -1px 6px -2px hsl(0, 0%, 2%);
     font-size: 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none !important;
+    appearance: none;
 }
             
 h3
@@ -93,12 +101,13 @@ input
             
 .smallTextbox 
 { 
+    margin-left: 10px;
     border-radius: 4px; 
     background-color: #a0bf1f;
     color: #FFFFFF;
     outline:0; 
     height:20px; 
-    width: 60px; 
+    width: 75px; 
     padding-left:10px; 
     padding-right:10px; 
     font-weight: bold;

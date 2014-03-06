@@ -43,7 +43,7 @@
                     <canvas width=225 height=125 id="advanceGauge"></canvas>
                     <h3>
                         АВАНС:
-                        <input type="text" id="tbPercent" name="percent" style="width: 15px" onchange="calcAdvance(); calculate();" class="smallTextbox" value="0" />
+                        <input type="text" id="tbPercent" name="percent" style="width: 20px" onchange="calcAdvance(); calculate();" class="smallTextbox" value="0" />
                         %
                         <input type="text" id="tbAdvance" onchange="calculate()" class="smallTextbox" value="0" />
                         руб.
@@ -52,15 +52,15 @@
                 <div class="speedometer" style="position: absolute; top: 200px; left: 300px;">        
                     <canvas width=300 height=165 id="monthGauge"></canvas>
                     <h3 style="position: absolute; left: 15%; width:10px;">СРОК ЛИЗИНГА:</h3>
-                    <h3 style="position: absolute; top:175px; right: 15%;">
-                        <input type="text" id="tbMonth" style="width: 15px" onchange="calculate()" class="smallTextbox" value="6" />
+                    <h3 style="position: absolute; top:175px; right: 12%;">
+                        <input type="text" id="tbMonth" style="width: 20px" onchange="calculate()" class="smallTextbox" value="6" />
                         мес.
                     </h3>
                     <a style="position: absolute; bottom: 15px; left: 35%;" href="#">
-                        <img name="leftButton" src="img/left_arrow_dark.png" id="ibtnLeft" onMouseOver="return changeImage('leftButton', 'img/left_arrow.png')" onMouseOut= "return changeImageBack('leftButton', 'img/left_arrow_dark.png')" alt="Уменьшить срок на месяц" onclick="holdit(document.getElementById('ibtnLeft'), decreaseMonth(), 1000, 2);" />
+                        <img style="border-style:none;" name="leftButton" src="img/left_arrow_dark.png" id="ibtnLeft" onMouseOver="return changeImage('leftButton', 'img/left_arrow.png')" onMouseOut= "return changeImageBack('leftButton', 'img/left_arrow_dark.png')" alt="Уменьшить срок на месяц" onclick="holdit(document.getElementById('ibtnLeft'), decreaseMonth(), 1000, 2);" />
                     </a>
                     <a style="position: absolute; bottom: 15px; left: 55%;" href="#">
-                        <img name="rightButton" src="img/right_arrow_dark.png" id="ibtnRight" onMouseOver="return changeImage('rightButton', 'img/right_arrow.png')" onMouseOut= "return changeImageBack('rightButton', 'img/right_arrow_dark.png')" alt="Уменьшить срок на месяц" onclick="holdit(document.getElementById('ibtnRight'), increaseMonth(), 1000, 2);" />
+                        <img style="border-style:none;" name="rightButton" src="img/right_arrow_dark.png" id="ibtnRight" onMouseOver="return changeImage('rightButton', 'img/right_arrow.png')" onMouseOut= "return changeImageBack('rightButton', 'img/right_arrow_dark.png')" alt="Уменьшить срок на месяц" onclick="holdit(document.getElementById('ibtnRight'), increaseMonth(), 1000, 2);" />
                     </a>
                 </div> 
                 <div class="emptySpeedometer" style="position: absolute; top: 250px; left: 620px;">
