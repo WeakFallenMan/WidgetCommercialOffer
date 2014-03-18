@@ -134,7 +134,7 @@
             resizable: false,
             draggable: false
         });
-
+        
         initSmallGauge();
         initBigGauge();
     });
