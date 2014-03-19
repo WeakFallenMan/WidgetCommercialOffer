@@ -11,7 +11,7 @@
             {
                 digitHeight: 25,
                 digitWidth: 18.7,
-                formatNumberOptions: { format: "0,000,000" } 
+                formatNumberOptions: { format: "0000000" } 
             }
         );
     });
