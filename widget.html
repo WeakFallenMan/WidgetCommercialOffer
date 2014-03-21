@@ -24,19 +24,18 @@
             <form action="">
                 <div style="position:absolute; top:100px; left:75px;">
                     <h3>ПРЕДМЕТ ЛИЗИНГА:   
-                    <br />
-                    <select onchange="calculate()" id="slctLeasingSubject">
-                        <option value="22" selected>Автомобили марки ГАЗ</option>
-                        <option value="25">Грузовики и спецтехника</option>
-                        <option value="25">Легковые автомобили</option>
-                    </select>   
+						<br />
+						<select onchange="calculate()" id="slctLeasingSubject">
+							<option value="22" selected>Автомобили марки ГАЗ</option>
+							<option value="25">Грузовики и спецтехника</option>
+						</select>   
                     </h3>      
                 </div>
                 <div style="position:absolute; top:100px; left:550px;">
                     <h3 style="text-align:left">
                         СТОИМОСТЬ:
                         <br />
-                        <input type="text" id="tbLeasingAmount" class="textbox" onchange="calculate()" value="0" />
+                        <input type="text" id="tbLeasingAmount" class="textbox" onchange="calculateStart()" value="0" />
                         руб.
                     </h3>
                 </div>
@@ -44,9 +43,9 @@
                     <canvas width=225 height=125 id="advanceGauge"></canvas>
                     <h3>
                         АВАНС:
-                        <input type="text" id="tbPercent" name="percent" style="width: 20px" onchange="calcAdvance(); calculate();" class="smallTextbox" value="0" />
+                        <input type="text" id="tbPercent" name="percent" style="width: 20px" onchange="calcAdvance(); calculateStart();" class="smallTextbox" value="0" />
                         %
-                        <input type="text" id="tbAdvance" onchange="calculate()" class="smallTextbox" value="0" />
+                        <input type="text" id="tbAdvance" onchange="calculateStart()" class="smallTextbox" value="0" />
                         руб.
                     </h3>
                 </div>   
@@ -54,7 +53,7 @@
                     <canvas width=300 height=165 id="monthGauge"></canvas>
                     <h3 style="position: absolute; left: 15%; width:10px;">СРОК ЛИЗИНГА:</h3>
                     <h3 style="position: absolute; top:175px; right: 12%;">
-                        <input type="text" id="tbMonth" style="width: 20px" onchange="calculate()" class="smallTextbox" value="6" />
+                        <input type="text" id="tbMonth" style="width: 20px" onchange="calculateStart()" class="smallTextbox" value="6" />
                         мес.
                     </h3>
                     <a style="position: absolute; bottom: 15px; left: 35%;" href="#">
@@ -65,7 +64,7 @@
                     </a>
                 </div> 
                 <div class="emptySpeedometer" style="position: absolute; top: 250px; left: 620px;">
-                    <h3 style="position:relative; top:30px; left:25px; text-align:left; width:50px;">
+                    <h3 style="position:relative; top:30px; left:30px; text-align:left; width:50px;">
                         ВАШ ЕЖЕМЕСЯЧНЫЙ ПЛАТЕЖ:
                     </h3>
                         <div id="counter" style="position:relative; top: 20px;"><input id="payment" type="hidden" name="counter-value" value="000000" /></div> 
@@ -86,7 +85,7 @@
     (function () {
         var prev_value = "";
         var input = document.getElementById("tbAdvance");
-        input.onkeyup = input.onchange = input.onpaste = function () {
+        input.onkeyup = input.onpaste = function () {
             calculate();
             this.value = this.value.replace(/[^\d\s]/g, "");
             if (prev_value == this.value)// отслеживаем изменение значения
@@ -99,8 +98,21 @@
     (function () {
         var prev_value = "";
         var input = document.getElementById("tbLeasingAmount");
-        input.onkeyup = input.onchange = input.onpaste = function () {
+        input.onkeyup = input.onpaste = function () {
             calculate();
+            this.value = this.value.replace(/[^\d\s]/g, "");
+            if (prev_value == this.value)// отслеживаем изменение значения
+                return;
+            prev_value = this.value;
+            this.value = this.value.replace(/[^\d]/g, "").split("").reverse().join("").replace(/\d{3}(?!$|(?:\s$))/g, "$& ").split("").reverse().join(""); // Уууу, цепочки!..
+        };
+    })();
+	
+	(function () {
+        var prev_value = "";
+        var input = document.getElementById("tbPercent");
+        input.onkeyup = input.onpaste = function () {
+            calculateStartWithoutPercent();
             this.value = this.value.replace(/[^\d\s]/g, "");
             if (prev_value == this.value)// отслеживаем изменение значения
                 return;

@@ -1,4 +1,6 @@
   
+	var timeout;
+  
     $("input[type=text]").keypress(function (b) {
         var C = /[0-9\x25\x27\x24\x23]/;
         var a = b.which;
@@ -156,12 +158,31 @@
         }        
     }
 
-    function calculate() {
-
+	function calculate() {
         checkNumber(); 
-        calcPercent();
+		
+		if(timeout) {
+			clearTimeout(timeout);
+			timeout = null;
+		}
 
-        leasingAmount = document.getElementById("tbLeasingAmount").value.replace(/\s+/g, '');
+		timeout = setTimeout(calculateStart, 500)
+	}
+	
+    function calculateStart() {
+        calcPercent();
+		calculations();        
+		clearTimeout(timeout);
+    }
+	
+	function calculateStartWithoutPercent() {
+		calculations();        
+		clearTimeout(timeout);
+    }
+	
+	function calculations() {
+		
+		leasingAmount = document.getElementById("tbLeasingAmount").value.replace(/\s+/g, '');
         advance = document.getElementById("tbAdvance").value.replace(/\s+/g, '');
         advancePercent = document.getElementById("tbPercent").value;
         irrPercent = document.getElementById("slctLeasingSubject").value;
@@ -176,8 +197,8 @@
 
             paymentTotal = Math.ceil((c * b) / (1 - (1 / Math.pow((1 + b), month))));
             $("#counter").flipCounter("setNumber", paymentTotal);
-        }
-    }
+        }		
+	}
 
     function calcPercent() {
         var percent;
@@ -193,6 +214,11 @@
             document.getElementById("tbPercent").value = percent;
             calcAdvance(percent);
         }
+		else
+		{
+			percent = document.getElementById("tbPercent").value;
+			calcAdvance(percent);
+		}
     }
 
     function calcAdvance(percent) {
